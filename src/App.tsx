@@ -1,5 +1,3 @@
-import Header from './components/Header'
-
 export const App = () => {
-  return <Header />
+  return <h1>util-ui mfe</h1>
 }

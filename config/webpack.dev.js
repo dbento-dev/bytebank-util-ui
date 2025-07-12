@@ -1,26 +1,26 @@
-const { ModuleFederationPlugin } = require("webpack").container
-const { merge } = require("webpack-merge")
-const commonConfig = require("./webpack.common")
+const { ModuleFederationPlugin } = require('webpack').container
+const { merge } = require('webpack-merge')
+const commonConfig = require('./webpack.common')
 
-const deps = require("../package.json").dependencies
+const deps = require('../package.json').dependencies
 
 const devConfig = {
-  mode: "development",
+  mode: 'development',
   output: {
-    publicPath: "http://localhost:3001/",
-    filename: "[name].js",
+    publicPath: 'http://localhost:8310/',
+    filename: '[name].js'
     // clean: true,
   },
 
   devServer: {
-    port: 3001,
+    port: 8310,
     historyApiFallback: {
-      index: "/index.html",
+      index: '/index.html'
     },
     hot: true,
     headers: {
-      "Access-Control-Allow-Origin": "*",
-    },
+      'Access-Control-Allow-Origin': '*'
+    }
     // static: {
     //   directory: path.join(__dirname, "../dist"),
     // },
@@ -30,30 +30,30 @@ const devConfig = {
 
   plugins: [
     new ModuleFederationPlugin({
-      name: "app_header",
-      filename: "remoteEntry.js",
+      name: 'util-ui',
+      filename: 'remoteEntry.js',
       exposes: {
-        "./Header": "./src/components/Header",
+        // './Header': './src/components/Header'
       },
       shared: {
         react: {
           singleton: true,
           requiredVersion: deps.react,
-          eager: false,
+          eager: false
         },
-        "react-dom": {
+        'react-dom': {
           singleton: true,
-          requiredVersion: deps["react-dom"],
-          eager: false,
+          requiredVersion: deps['react-dom'],
+          eager: false
         },
-        "react-router-dom": {
+        'react-router-dom': {
           singleton: true,
-          requiredVersion: deps["react-router-dom"],
-          eager: false,
-        },
-      },
-    }),
-  ],
+          requiredVersion: deps['react-router-dom'],
+          eager: false
+        }
+      }
+    })
+  ]
 }
 
 module.exports = merge(commonConfig, devConfig)
