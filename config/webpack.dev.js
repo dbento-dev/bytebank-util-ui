@@ -30,26 +30,41 @@ const devConfig = {
 
   plugins: [
     new ModuleFederationPlugin({
-      name: 'util-ui',
+      name: 'utilUi',
       filename: 'remoteEntry.js',
       exposes: {
-        // './Header': './src/components/Header'
+        // './Header': './src/components/Header',
+        './ThemeProvider': './src/ThemeProvider'
       },
       shared: {
+        ...deps,
         react: {
           singleton: true,
-          requiredVersion: deps.react,
-          eager: false
+          requiredVersion: deps.react
         },
         'react-dom': {
           singleton: true,
-          requiredVersion: deps['react-dom'],
-          eager: false
+          requiredVersion: deps['react-dom']
         },
         'react-router-dom': {
           singleton: true,
-          requiredVersion: deps['react-router-dom'],
-          eager: false
+          requiredVersion: deps['react-router-dom']
+        },
+        '@emotion/react': {
+          singleton: true,
+          requiredVersion: deps['@emotion/react']
+        },
+        '@emotion/styled': {
+          singleton: true,
+          requiredVersion: deps['@emotion/styled']
+        },
+        '@mui/material': {
+          singleton: true,
+          requiredVersion: deps['@mui/material']
+        },
+        '@mui/icons-material': {
+          singleton: true,
+          requiredVersion: deps['@mui/icons-material']
         }
       }
     })
