@@ -1,9 +1,11 @@
 import { Box, Stack } from '@mui/material'
+import { SelectChangeEvent } from '@mui/material/Select'
 import { useState } from 'react'
 import Button from './components/atoms/Button'
 import CurrencyInput from './components/atoms/CurrencyInput'
 import IconButton from './components/atoms/IconButton'
 import InputField from './components/atoms/InputField'
+import SelectField from './components/atoms/SelectField'
 import UserInfo from './components/atoms/UserInfo'
 import WelcomeHeader from './components/atoms/WelcomeHeader'
 
@@ -21,6 +23,16 @@ export const App = () => {
   const [value, setValue] = useState<string | undefined>('')
   const handleValueChange = (newValue: string | undefined) => {
     setValue(newValue)
+  }
+
+  // SelectField
+  const transactionOptions = [
+    { label: 'Entrada', value: 'income' },
+    { label: 'Saída', value: 'expense' }
+  ]
+  const [transactionType, setTransactionType] = useState('expense')
+  const handleSelectChange = (event: SelectChangeEvent<unknown>) => {
+    setTransactionType(event.target.value as string)
   }
 
   return (
@@ -66,6 +78,16 @@ export const App = () => {
             value={value}
             onValueChange={handleValueChange}
             placeholder="R$ 0,00"
+          />
+        </Box>
+
+        <Box sx={{ paddingTop: 2, width: 400 }}>
+          <SelectField
+            label="Teste"
+            options={transactionOptions}
+            value={transactionType}
+            onChange={handleSelectChange}
+            fullWidth
           />
         </Box>
       </Box>
