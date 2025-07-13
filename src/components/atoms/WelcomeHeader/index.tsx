@@ -23,14 +23,14 @@ const WelcomeHeader: React.FC<WelcomeHeaderProps> = ({ userName }) => {
   return (
     <HeaderWrapper>
       <Box>
-        <Typography>Olá, {userName}! :]</Typography>
+        <Typography variant="body1">Olá, {userName}! :]</Typography>
         <Typography variant="h6">
           <GradientText>Bem vinda de volta!</GradientText>
         </Typography>
       </Box>
 
       <Box>
-        <Typography>{formattedDate}</Typography>
+        <Typography variant="body2">{formattedDate}</Typography>
       </Box>
     </HeaderWrapper>
   )

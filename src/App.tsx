@@ -1,8 +1,9 @@
 import { Box, Stack, Typography, useTheme } from '@mui/material'
 import Button from './components/atoms/Button'
 import IconButton from './components/atoms/IconButton'
-import WelcomeHeader from './components/atoms/Welcome'
-
+import UserInfo from './components/atoms/UserInfo'
+import WelcomeHeader from './components/atoms/WelcomeHeader'
+const userImage = 'https://i.pravatar.cc/150?u=alice'
 export const App = () => {
   const theme = useTheme()
   return (
@@ -28,6 +29,14 @@ export const App = () => {
 
           <IconButton variant="edit" aria-label="Editar item" />
         </Stack>
+      </Box>
+
+      <Box sx={{ padding: 2, maxWidth: 400 }}>
+        <UserInfo
+          userName="Alice Silva"
+          accountType="Conta corrente"
+          avatarUrl={userImage}
+        />
       </Box>
     </>
   )
