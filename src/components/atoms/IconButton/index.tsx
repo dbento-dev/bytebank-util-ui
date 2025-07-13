@@ -1,9 +1,10 @@
 import React from 'react'
-import { StyledIconButton } from './styles'
-import { IconButtonProps } from './types'
 
 import DeleteIcon from '@mui/icons-material/Delete'
 import EditIcon from '@mui/icons-material/Edit'
+
+import { StyledIconButton } from './styles'
+import { IconButtonProps } from './types'
 
 const iconMap = {
   delete: <DeleteIcon />,

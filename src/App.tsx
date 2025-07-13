@@ -1,13 +1,15 @@
+import { useState } from 'react'
+
 import { Box, Stack } from '@mui/material'
 import { SelectChangeEvent } from '@mui/material/Select'
-import { useState } from 'react'
+
 import Button from './components/atoms/Button'
-import CurrencyInput from './components/atoms/CurrencyInput'
 import IconButton from './components/atoms/IconButton'
-import InputField from './components/atoms/InputField'
-import SelectField from './components/atoms/SelectField'
-import UserInfo from './components/atoms/UserInfo'
-import WelcomeHeader from './components/atoms/WelcomeHeader'
+import CurrencyInput from './components/molecules/CurrencyInput'
+import InputField from './components/molecules/InputField'
+import SelectField from './components/molecules/SelectField'
+import UserInfo from './components/organisms/UserInfo'
+import WelcomeHeader from './components/organisms/WelcomeHeader'
 
 export const App = () => {
   // Imagem p/ avatar

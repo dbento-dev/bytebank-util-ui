@@ -1,6 +1,8 @@
-import { Box } from '@mui/material'
 import React from 'react'
-import { StyledLabel } from '../Label/styles'
+
+import { Box } from '@mui/material'
+
+import { StyledLabel } from '../../atoms/Label/styles'
 import { StyledTextField } from './styles'
 import { InputFieldProps } from './types'
 

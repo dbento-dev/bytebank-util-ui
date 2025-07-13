@@ -1,5 +1,7 @@
-import { Avatar, Box, Typography } from '@mui/material'
 import React from 'react'
+
+import { Avatar, Box, Typography } from '@mui/material'
+
 import { UserInfoWrapper } from './styles'
 import { UserInfoProps } from './types'
 

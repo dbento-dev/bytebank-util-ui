@@ -1,5 +1,7 @@
-import { Box, Typography } from '@mui/material'
 import React from 'react'
+
+import { Box, Typography } from '@mui/material'
+
 import { GradientText, HeaderWrapper } from './styles'
 import { WelcomeHeaderProps } from './types'
 

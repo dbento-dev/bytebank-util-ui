@@ -1,11 +1,12 @@
-import { FormControl } from '@mui/material'
-import MenuItem from '@mui/material/MenuItem'
 import React from 'react'
-import { StyledSelect } from './styles'
-import { SelectFieldProps, SelectOption } from './types'
 
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
-import InputLabel from '../Label'
+import { FormControl } from '@mui/material'
+import MenuItem from '@mui/material/MenuItem'
+
+import InputLabel from '../../atoms/Label'
+import { StyledSelect } from './styles'
+import { SelectFieldProps, SelectOption } from './types'
 
 const SelectField: React.FC<SelectFieldProps> = (props) => {
   const { label, options, value, fullWidth, ...rest } = props

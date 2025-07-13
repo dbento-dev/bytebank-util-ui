@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { StyledLabel } from './styles'
 import { InputLabelProps } from './types'
 

@@ -1,7 +1,9 @@
-import { Box } from '@mui/material'
 import React from 'react'
 import CurrencyInputField from 'react-currency-input-field'
-import { StyledLabel } from '../Label/styles'
+
+import { Box } from '@mui/material'
+
+import { StyledLabel } from '../../atoms/Label/styles'
 import { StyledTextField } from './styles'
 import { CurrencyInputProps } from './types'
 
