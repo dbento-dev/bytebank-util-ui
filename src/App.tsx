@@ -9,11 +9,24 @@ import CurrencyInput from './components/molecules/CurrencyInput'
 import InputField from './components/molecules/InputField'
 import SelectField from './components/molecules/SelectField'
 import AccountCard from './components/organisms/AccountCard'
+import ConfirmationModal from './components/organisms/ConfirmationModal'
 import TransactionItem from './components/organisms/TransactionItem'
 import UserInfo from './components/organisms/UserInfo'
 import WelcomeHeader from './components/organisms/WelcomeHeader'
 
 export const App = () => {
+  // ConfirmationModal
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const itemNameToDelete = 'Transporte'
+
+  const handleOpenModal = () => setIsModalOpen(true)
+  const handleCloseModal = () => setIsModalOpen(false)
+
+  const handleConfirmDelete = () => {
+    alert(`Item "${itemNameToDelete}" excluído!`)
+    handleCloseModal()
+  }
+
   // Imagem p/ avatar
   const userImage = 'https://i.pravatar.cc/150?u=alice'
 
@@ -156,6 +169,20 @@ export const App = () => {
             balance={12540.8}
             isBalanceVisible={isBalanceVisible}
             onToggleVisibility={toggleVisibility}
+          />
+        </Box>
+
+        <Box sx={{ paddingTop: 2, maxWidth: 400 }}>
+          <Button variant="error" onClick={handleOpenModal}>
+            Deletar
+          </Button>
+
+          <ConfirmationModal
+            open={isModalOpen}
+            onClose={handleCloseModal}
+            onConfirm={handleConfirmDelete}
+            title="Confirmar exclusão"
+            itemName={itemNameToDelete}
           />
         </Box>
       </Box>
