@@ -1,6 +1,7 @@
 import { Box } from '@mui/material'
 import React from 'react'
-import { InputLabel, StyledTextField } from './styles'
+import { StyledLabel } from '../Label/styles'
+import { StyledTextField } from './styles'
 import { InputFieldProps } from './types'
 
 const InputField: React.FC<InputFieldProps> = (props) => {
@@ -10,7 +11,7 @@ const InputField: React.FC<InputFieldProps> = (props) => {
 
   return (
     <Box sx={{ width: '100%' }}>
-      <InputLabel htmlFor={inputId}>{label}</InputLabel>
+      <StyledLabel htmlFor={inputId}>{label}</StyledLabel>
 
       <StyledTextField {...rest} id={inputId} variant="outlined" fullWidth />
     </Box>
