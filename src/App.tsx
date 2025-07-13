@@ -1,11 +1,20 @@
 import { Box, Stack, Typography, useTheme } from '@mui/material'
+import { useState } from 'react'
 import Button from './components/atoms/Button'
 import IconButton from './components/atoms/IconButton'
+import InputField from './components/atoms/InputField'
 import UserInfo from './components/atoms/UserInfo'
 import WelcomeHeader from './components/atoms/WelcomeHeader'
 const userImage = 'https://i.pravatar.cc/150?u=alice'
 export const App = () => {
   const theme = useTheme()
+
+  const [description, setDescription] = useState('Padaria')
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setDescription(event.target.value)
+  }
+
   return (
     <>
       <Typography variant="h4" color={theme.palette.primary.light}>
@@ -37,6 +46,10 @@ export const App = () => {
           accountType="Conta corrente"
           avatarUrl={userImage}
         />
+      </Box>
+
+      <Box sx={{ padding: 2, maxWidth: 400 }}>
+        <InputField label="Teste" value={description} onChange={handleChange} />
       </Box>
     </>
   )
