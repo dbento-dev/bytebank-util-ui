@@ -1,9 +1,15 @@
-import styled from "@emotion/styled"
+import styled from '@emotion/styled'
 
 export const Wrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
+  max-width: 15.6rem;
+  width: 100%;
+
+  @media only screen and (min-width: 1024px) {
+    max-width: 25.6rem;
+  }
 `
 
 export const Img = styled.img`
