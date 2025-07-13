@@ -8,6 +8,7 @@ import IconButton from './components/atoms/IconButton'
 import CurrencyInput from './components/molecules/CurrencyInput'
 import InputField from './components/molecules/InputField'
 import SelectField from './components/molecules/SelectField'
+import TransactionItem from './components/organisms/TransactionItem'
 import UserInfo from './components/organisms/UserInfo'
 import WelcomeHeader from './components/organisms/WelcomeHeader'
 
@@ -35,6 +36,37 @@ export const App = () => {
   const [transactionType, setTransactionType] = useState('expense')
   const handleSelectChange = (event: SelectChangeEvent<unknown>) => {
     setTransactionType(event.target.value as string)
+  }
+
+  // TransactionForm
+  const mockTransactions = [
+    {
+      id: 1,
+      variant: 'income',
+      title: 'Salário',
+      date: '13/07/2025',
+      amount: 500.0
+    },
+    {
+      id: 2,
+      variant: 'expense',
+      title: 'Padaria',
+      date: '12/07/2025',
+      amount: 80.0
+    },
+    {
+      id: 3,
+      variant: 'expense',
+      title: 'Conta de Luz',
+      date: '11/07/2025',
+      amount: 150.75
+    }
+  ]
+  const handleEdit = (id: number) => {
+    alert(`Você clicou em EDITAR o item com ID: ${id}`)
+  }
+  const handleDelete = (id: number) => {
+    alert(`Você clicou em DELETAR o item com ID: ${id}`)
   }
 
   return (
@@ -91,6 +123,22 @@ export const App = () => {
             onChange={handleSelectChange}
             fullWidth
           />
+        </Box>
+
+        <Box sx={{ paddingTop: 2, maxWidth: 700 }}>
+          <Stack spacing={1.5}>
+            {mockTransactions.map((transaction) => (
+              <TransactionItem
+                key={transaction.id}
+                variant={transaction.variant as 'income' | 'expense'}
+                title={transaction.title}
+                date={transaction.date}
+                amount={transaction.amount}
+                onEdit={() => handleEdit(transaction.id)}
+                onDelete={() => handleDelete(transaction.id)}
+              />
+            ))}
+          </Stack>
         </Box>
       </Box>
     </>
