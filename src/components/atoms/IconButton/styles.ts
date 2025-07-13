@@ -1,9 +1,6 @@
 import MuiIconButton from '@mui/material/IconButton'
 import { css, styled, Theme } from '@mui/material/styles'
-
-interface CustomProps {
-  customVariant: 'delete' | 'edit'
-}
+import { CustomProps } from './types'
 
 const getVariantStyles = (theme: Theme) => ({
   delete: css`
