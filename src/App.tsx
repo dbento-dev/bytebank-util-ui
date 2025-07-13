@@ -8,6 +8,7 @@ import IconButton from './components/atoms/IconButton'
 import CurrencyInput from './components/molecules/CurrencyInput'
 import InputField from './components/molecules/InputField'
 import SelectField from './components/molecules/SelectField'
+import AccountCard from './components/organisms/AccountCard'
 import TransactionItem from './components/organisms/TransactionItem'
 import UserInfo from './components/organisms/UserInfo'
 import WelcomeHeader from './components/organisms/WelcomeHeader'
@@ -67,6 +68,12 @@ export const App = () => {
   }
   const handleDelete = (id: number) => {
     alert(`Você clicou em DELETAR o item com ID: ${id}`)
+  }
+
+  // AccountCard
+  const [isBalanceVisible, setIsBalanceVisible] = useState(false)
+  const toggleVisibility = () => {
+    setIsBalanceVisible((prevState) => !prevState)
   }
 
   return (
@@ -139,6 +146,17 @@ export const App = () => {
               />
             ))}
           </Stack>
+        </Box>
+
+        <Box sx={{ paddingTop: 2, maxWidth: 400 }}>
+          <AccountCard
+            lastFourDigits="3456"
+            expirationDate="12/27"
+            accountType="Conta corrente"
+            balance={12540.8}
+            isBalanceVisible={isBalanceVisible}
+            onToggleVisibility={toggleVisibility}
+          />
         </Box>
       </Box>
     </>
