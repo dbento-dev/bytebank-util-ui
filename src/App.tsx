@@ -10,6 +10,8 @@ import InputField from './components/molecules/InputField'
 import SelectField from './components/molecules/SelectField'
 import AccountCard from './components/organisms/AccountCard'
 import ConfirmationModal from './components/organisms/ConfirmationModal'
+import TransactionForm from './components/organisms/TransactionForm'
+import { TransactionFormData } from './components/organisms/TransactionForm/types'
 import TransactionItem from './components/organisms/TransactionItem'
 import UserInfo from './components/organisms/UserInfo'
 import WelcomeHeader from './components/organisms/WelcomeHeader'
@@ -52,7 +54,7 @@ export const App = () => {
     setTransactionType(event.target.value as string)
   }
 
-  // TransactionForm
+  // TransactionItem
   const mockTransactions = [
     {
       id: 1,
@@ -89,10 +91,29 @@ export const App = () => {
     setIsBalanceVisible((prevState) => !prevState)
   }
 
+  // TransactionForm
+  const handleCreateSubmit = (data: TransactionFormData) => {
+    alert(`CRIANDO: ${JSON.stringify(data)}`)
+  }
+
+  const handleEditSubmit = (data: TransactionFormData) => {
+    alert(`EDITANDO: ${JSON.stringify(data)}`)
+  }
+
+  const handleCancelEdit = () => {
+    alert('Edição cancelada!')
+  }
+
+  const transactionToEdit = {
+    type: 'expense',
+    amount: '80.00',
+    description: 'Padaria'
+  }
+
   return (
     <>
       <Box sx={{ padding: 2 }}>
-        <Box sx={{ paddingTop: 2, maxWidth: 800 }}>
+        <Box sx={{ paddingTop: 2, maxWidth: 700 }}>
           <WelcomeHeader userName="Alice Silva" />
         </Box>
 
@@ -184,6 +205,35 @@ export const App = () => {
             title="Confirmar exclusão"
             itemName={itemNameToDelete}
           />
+        </Box>
+
+        <Box sx={{ display: 'flex', gap: 4, paddingTop: 2 }}>
+          <Box
+            sx={{
+              flex: 1,
+              border: '1px solid #ddd',
+              padding: 2,
+              borderRadius: 2
+            }}
+          >
+            <TransactionForm variant="create" onSubmit={handleCreateSubmit} />
+          </Box>
+
+          <Box
+            sx={{
+              flex: 1,
+              border: '1px solid #ddd',
+              padding: 2,
+              borderRadius: 2
+            }}
+          >
+            <TransactionForm
+              variant="edit"
+              onSubmit={handleEditSubmit}
+              onCancel={handleCancelEdit}
+              initialData={transactionToEdit}
+            />
+          </Box>
         </Box>
       </Box>
     </>
