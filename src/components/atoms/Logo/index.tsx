@@ -9,3 +9,5 @@ export const Logo = () => {
     </Wrapper>
   )
 }
+
+export default Logo

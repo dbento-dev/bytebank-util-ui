@@ -15,7 +15,7 @@ import { TransactionFormData } from './components/organisms/TransactionForm/type
 import TransactionItem from './components/organisms/TransactionItem'
 import UserInfo from './components/organisms/UserInfo'
 import WelcomeHeader from './components/organisms/WelcomeHeader'
-import { Header } from './components'
+import { Logo } from './components'
 
 export const App = () => {
   // ConfirmationModal
@@ -115,7 +115,7 @@ export const App = () => {
     <>
       <Box sx={{ padding: 2 }}>
         <Box sx={{ paddingBottom: 2 }}>
-          <Header />
+          <Logo />
         </Box>
         <Box sx={{ paddingTop: 2, maxWidth: 700 }}>
           <WelcomeHeader userName="Alice Silva" />
