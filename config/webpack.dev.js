@@ -34,6 +34,7 @@ const devConfig = {
       filename: 'remoteEntry.js',
       exposes: {
         // './Header': './src/components/Header',
+        './components': './src/components', // Webpack irá resolver para src/components/index.ts
         './ThemeProvider': './src/ThemeProvider'
       },
       shared: {
