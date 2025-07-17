@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 
-import { Box, Stack, Typography } from '@mui/material'
+import { Stack, Typography } from '@mui/material'
 import { SelectChangeEvent } from '@mui/material/Select'
 
 import Button from '../../atoms/Button'
 import CurrencyInput from '../../molecules/CurrencyInput'
 import InputField from '../../molecules/InputField'
 import SelectField from '../../molecules/SelectField'
-import { ActionsWrapper } from './styles'
+import { ActionsWrapper, BoxWrapper } from './styles'
 import { TransactionFormProps } from './types'
 
 const transactionOptions = [
@@ -59,7 +59,7 @@ const TransactionForm: React.FC<TransactionFormProps> = ({
   }
 
   return (
-    <Box component="form" onSubmit={handleSubmit}>
+    <BoxWrapper onSubmit={handleSubmit}>
       <Typography variant="h5" component="h1" fontWeight="bold" gutterBottom>
         {title}
       </Typography>
@@ -95,7 +95,7 @@ const TransactionForm: React.FC<TransactionFormProps> = ({
           </Button>
         )}
       </ActionsWrapper>
-    </Box>
+    </BoxWrapper>
   )
 }
 
