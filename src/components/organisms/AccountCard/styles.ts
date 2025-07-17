@@ -6,7 +6,7 @@ export const CardWrapper = styled(Box)(({ theme }) => ({
   color: theme.palette.common.white,
   borderRadius: '1.6rem',
   padding: '1.5rem',
-  minHeight: '12rem',
+  minHeight: '25rem',
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between'
