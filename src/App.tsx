@@ -6,6 +6,7 @@ import {
   IconButton,
   InputField,
   SelectField,
+  TransactionItem,
   UserInfo,
   WelcomeHeader
 } from './components'
@@ -148,6 +149,25 @@ export const App = () => {
             expiryDate="12/27"
             accountType="Conta Corrente"
             balance="R$ 1.234,56"
+          />
+        </Box>
+
+        <Box sx={{ mb: '2rem' }}>
+          <TransactionItem
+            transactionType="income"
+            title="Freelance"
+            date="05/08"
+            amount="+ R$ 400,00"
+            onEdit={() => handleButton()}
+            onDelete={() => handleButton()}
+          />
+          <TransactionItem
+            transactionType="expense"
+            title="Freelance"
+            date="05/08"
+            amount="+ R$ 400,00"
+            onEdit={() => handleButton()}
+            onDelete={() => handleButton()}
           />
         </Box>
       </Box>

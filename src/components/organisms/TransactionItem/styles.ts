@@ -1,68 +1,32 @@
-import { Box, Typography } from '@mui/material'
-import { css, styled, Theme } from '@mui/material/styles'
+import Avatar from '@mui/material/Avatar'
+import Box from '@mui/material/Box'
+import { alpha, styled, Theme } from '@mui/material/styles'
+import Typography from '@mui/material/Typography'
+import { TransactionType } from './types'
 
-import { StyleVariantProps } from './types'
-
-const getIconWrapperStyles = (theme: Theme) => ({
-  income: css`
-    background-color: ${theme.palette.success.light}80;
-    color: ${theme.palette.success.dark};
-  `,
-  expense: css`
-    background-color: ${theme.palette.error.light}80;
-    color: ${theme.palette.error.dark};
-  `
-})
-
-const getAmountTextStyles = (theme: Theme) => ({
-  income: css`
-    color: ${theme.palette.success.dark};
-  `,
-  expense: css`
-    color: ${theme.palette.error.dark};
-  `
-})
-
-export const ItemWrapper = styled(Box)(({ theme }) => ({
+export const ItemContainer = styled(Box)(({ theme }: { theme: Theme }) => ({
   display: 'flex',
-  justifyContent: 'space-between',
   alignItems: 'center',
   padding: '1rem',
   backgroundColor: theme.palette.grey[50],
-  borderRadius: '.4rem'
+  borderRadius: '0.75rem',
+  width: '100%'
 }))
 
-export const IconWrapper = styled(Box)<{ variant: 'income' | 'expense' }>(({
-  theme,
-  variant
-}) => {
-  const variantStyles = getIconWrapperStyles(theme)
+export const TransactionIcon = styled(Avatar, {
+  shouldForwardProp: (prop) => prop !== 'transactionType'
+})<{ transactionType: TransactionType }>(({ theme, transactionType }) => ({
+  backgroundColor: alpha(
+    theme.palette[transactionType === 'income' ? 'success' : 'error'].main,
+    0.15
+  ),
+  color: theme.palette[transactionType === 'income' ? 'success' : 'error'].main
+}))
 
-  return [
-    {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      width: '4rem',
-      height: '4rem',
-      borderRadius: '50%'
-    },
-
-    variantStyles[variant]
-  ]
-})
-
-export const AmountText = styled(Typography)<StyleVariantProps>(({
-  theme,
-  customVariant
-}) => {
-  const variantStyles = getAmountTextStyles(theme)
-
-  return [
-    {
-      fontWeight: 'bold'
-    },
-
-    variantStyles[customVariant]
-  ]
-})
+export const AmountText = styled(Typography, {
+  shouldForwardProp: (prop) => prop !== 'transactionType'
+})<{ transactionType: TransactionType }>(({ theme, transactionType }) => ({
+  color: theme.palette[transactionType === 'income' ? 'success' : 'error'].main,
+  fontWeight: theme.typography.fontWeightMedium,
+  textAlign: 'right'
+}))
