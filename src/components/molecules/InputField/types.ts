@@ -1,3 +1,6 @@
-import { TextFieldProps } from '@mui/material/TextField'
+import { OutlinedInputProps } from '@mui/material/OutlinedInput'
 
-export type InputFieldProps = TextFieldProps
+export interface InputFieldProps extends Omit<OutlinedInputProps, 'label'> {
+  label: string
+  id: string
+}

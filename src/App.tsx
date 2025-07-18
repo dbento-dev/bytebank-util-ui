@@ -1,7 +1,10 @@
 import { Box, Stack, Typography } from '@mui/material'
-import { Button, IconButton } from './components'
+import { useState } from 'react'
+import { Button, IconButton, InputField } from './components'
 
 export const App = () => {
+  const [descricao, setDescricao] = useState('')
+
   const handleButton = () => {
     console.log('Teste')
   }
@@ -57,6 +60,22 @@ export const App = () => {
               aria-label="Deletar transação"
             />
           </Stack>
+        </Box>
+
+        <Box component="form" sx={{ mb: '2rem', width: '300px' }}>
+          <Typography variant="h5" component="h2" sx={{ mb: '1.5rem' }}>
+            Demonstração do Componente: InputField
+          </Typography>
+          <InputField
+            id="descricao-transacao"
+            label="Descrição"
+            placeholder="Ex: Pagamento de conta"
+            value={descricao}
+            onChange={(e) => setDescricao(e.target.value)}
+          />
+          <Button colorVariant="info" sx={{ mt: 2 }}>
+            Salvar
+          </Button>
         </Box>
       </Box>
     </>

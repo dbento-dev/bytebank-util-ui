@@ -1,10 +1,11 @@
 import React from 'react'
 
 import { StyledLabel } from './styles'
-import { InputLabelProps } from './types'
 
-const InputLabel: React.FC<InputLabelProps> = (props) => {
-  return <StyledLabel {...props} />
+import { LabelProps } from './types'
+
+const Label: React.FC<LabelProps> = ({ children, ...rest }) => {
+  return <StyledLabel {...rest}>{children}</StyledLabel>
 }
 
-export default InputLabel
+export default Label
