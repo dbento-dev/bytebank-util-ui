@@ -1,32 +1,39 @@
+// ui/src/components/molecules/CurrencyInputField/index.tsx
+
 import React from 'react'
-import CurrencyInputField from 'react-currency-input-field'
+import { CurrencyInputFieldContainer, StyledCurrencyInput } from './styles'
+import { CurrencyInputFieldProps } from './types'
 
-import { Box } from '@mui/material'
+// Importando nosso átomo Label
+import Label from '../../atoms/Label'
 
-import { StyledLabel } from '../../atoms/Label/styles'
-import { StyledTextField } from './styles'
-import { CurrencyInputProps } from './types'
-
-const CurrencyInput: React.FC<CurrencyInputProps> = (props) => {
-  const { label, ...rest } = props
-  const inputId = React.useId()
-
+/**
+ * CurrencyInputField é uma molécula para entrada de valores monetários
+ * com formatação automática para a moeda brasileira (BRL).
+ */
+const CurrencyInputField: React.FC<CurrencyInputFieldProps> = ({
+  id,
+  label,
+  ...rest
+}) => {
   return (
-    <Box sx={{ width: '100%' }}>
-      <StyledLabel htmlFor={inputId}>{label}</StyledLabel>
-
-      <CurrencyInputField
-        {...rest}
-        id={inputId}
-        name={inputId}
-        customInput={StyledTextField}
+    <CurrencyInputFieldContainer>
+      <Label htmlFor={id}>{label}</Label>
+      <StyledCurrencyInput
+        id={id}
+        // Configurações padrão para a moeda brasileira
+        intlConfig={{ locale: 'pt-BR', currency: 'BRL' }}
         prefix="R$ "
         decimalSeparator=","
         groupSeparator="."
+        // Permite que o valor seja nulo se o campo estiver vazio
+        allowDecimals
         decimalsLimit={2}
+        // Passa adiante quaisquer outras props (value, onValueChange, placeholder, etc.)
+        {...rest}
       />
-    </Box>
+    </CurrencyInputFieldContainer>
   )
 }
 
-export default CurrencyInput
+export default CurrencyInputField

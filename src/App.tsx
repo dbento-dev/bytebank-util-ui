@@ -1,9 +1,12 @@
 import { Box, Stack, Typography } from '@mui/material'
 import { useState } from 'react'
 import { Button, IconButton, InputField } from './components'
+import CurrencyInputField from './components/molecules/CurrencyInput'
 
 export const App = () => {
   const [descricao, setDescricao] = useState('')
+
+  const [valor, setValor] = useState<string | undefined>()
 
   const handleButton = () => {
     console.log('Teste')
@@ -72,6 +75,13 @@ export const App = () => {
             placeholder="Ex: Pagamento de conta"
             value={descricao}
             onChange={(e) => setDescricao(e.target.value)}
+          />
+          <CurrencyInputField
+            id="valor-transacao"
+            label="Valor"
+            placeholder="R$ 0,00"
+            value={valor}
+            onValueChange={(value) => setValor(value)}
           />
           <Button colorVariant="info" sx={{ mt: 2 }}>
             Salvar
