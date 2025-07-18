@@ -1,6 +1,12 @@
 import { Box, Stack, Typography } from '@mui/material'
 import { useState } from 'react'
-import { Button, IconButton, InputField, SelectField } from './components'
+import {
+  Button,
+  IconButton,
+  InputField,
+  SelectField,
+  WelcomeHeader
+} from './components'
 import CurrencyInputField from './components/molecules/CurrencyInput'
 
 export const App = () => {
@@ -29,11 +35,19 @@ export const App = () => {
           borderRadius: '0.5rem'
         }}
       >
-        <Typography variant="h5" component="h2" sx={{ mb: '1.5rem' }}>
-          Demonstração do Componente: Button
-        </Typography>
+        <Box sx={{ mb: '2rem' }}>
+          <WelcomeHeader
+            userName="Alice"
+            welcomeMessage="Bem vinda de volta!"
+            dateString="Quinta-feira, 08/09/2024"
+          />
+        </Box>
 
         <Box sx={{ mb: '2rem' }}>
+          <Typography variant="h5" component="h2" sx={{ mb: '1.5rem' }}>
+            Demonstração do Componente: Button
+          </Typography>
+
           <Typography variant="h6" component="h3" sx={{ mb: '1rem' }}>
             Estados Ativos
           </Typography>

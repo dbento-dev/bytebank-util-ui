@@ -1,40 +1,33 @@
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
 import React from 'react'
-
-import { Box, Typography } from '@mui/material'
-
-import { GradientText, HeaderWrapper } from './styles'
+import { GradientTypography, HeaderContainer } from './styles'
 import { WelcomeHeaderProps } from './types'
 
-const getFormattedDate = () => {
-  const now = new Date()
-
-  const weekday = new Intl.DateTimeFormat('pt-BR', { weekday: 'long' }).format(
-    now
-  )
-
-  const date = new Intl.DateTimeFormat('pt-BR').format(now)
-
-  const capitalizedWeekday = weekday.charAt(0).toUpperCase() + weekday.slice(1)
-
-  return `${capitalizedWeekday}, ${date}`
-}
-
-const WelcomeHeader: React.FC<WelcomeHeaderProps> = ({ userName }) => {
-  const formattedDate = getFormattedDate()
-
+const WelcomeHeader: React.FC<WelcomeHeaderProps> = ({
+  userName,
+  welcomeMessage,
+  dateString,
+  ...rest
+}) => {
   return (
-    <HeaderWrapper>
+    <HeaderContainer {...rest}>
       <Box>
-        <Typography variant="body1">Olá, {userName}! :]</Typography>
-        <Typography variant="h6">
-          <GradientText>Bem vinda de volta!</GradientText>
+        <Typography variant="h5" component="p" color="text.primary">
+          {`Olá, ${userName} ! :)`}
+        </Typography>
+
+        <GradientTypography variant="h4" component="h1">
+          {welcomeMessage}
+        </GradientTypography>
+      </Box>
+
+      <Box sx={{ alignSelf: 'flex-end' }}>
+        <Typography variant="body2" color="text.secondary">
+          {dateString}
         </Typography>
       </Box>
-
-      <Box>
-        <Typography variant="body2">{formattedDate}</Typography>
-      </Box>
-    </HeaderWrapper>
+    </HeaderContainer>
   )
 }
 

@@ -1,15 +1,20 @@
 import Box from '@mui/material/Box'
-import { styled } from '@mui/material/styles'
+import { styled, Theme } from '@mui/material/styles'
+import Typography, { TypographyProps } from '@mui/material/Typography'
 
-export const HeaderWrapper = styled(Box)(() => ({
+export const HeaderContainer = styled(Box)(() => ({
   display: 'flex',
   justifyContent: 'space-between',
-  alignItems: 'center'
+  alignItems: 'flex-start',
+  width: '100%'
 }))
 
-export const GradientText = styled('span')(({ theme }) => ({
-  fontWeight: 'bold',
-  background: `linear-gradient(to right, ${theme.palette.primary.main}, ${theme.palette.info.main}, ${theme.palette.info.main})`,
-  backgroundClip: 'text',
-  color: 'transparent'
-}))
+export const GradientTypography = styled(Typography)<TypographyProps>(
+  ({ theme }: { theme: Theme }) => ({
+    background: `linear-gradient(90deg, ${theme.palette.primary.main}, ${theme.palette.info.main})`,
+    WebkitBackgroundClip: 'text',
+    backgroundClip: 'text',
+    color: 'transparent',
+    fontWeight: theme.typography.fontWeightBold
+  })
+)
