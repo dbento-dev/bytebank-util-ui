@@ -1,39 +1,40 @@
 import MuiIconButton from '@mui/material/IconButton'
-import { css, styled, Theme } from '@mui/material/styles'
-import { CustomProps } from './types'
+import { alpha, styled, Theme } from '@mui/material/styles'
+import { IconButtonProps } from './types'
 
-const getVariantStyles = (theme: Theme) => ({
-  delete: css`
-    background-color: ${theme.palette.error.light}80;
-    color: ${theme.palette.error.dark};
-    &:hover {
-      background-color: ${theme.palette.error.main};
-      color: ${theme.palette.error.contrastText};
+const variantStyles = (theme: Theme, variant: IconButtonProps['variant']) => {
+  const styles = {
+    edit: {
+      color: theme.palette.info.main,
+      backgroundColor: alpha(theme.palette.info.main, 0.15),
+      '&:hover': {
+        backgroundColor: alpha(theme.palette.info.main, 0.25)
+      }
+    },
+    delete: {
+      color: theme.palette.error.main,
+      backgroundColor: alpha(theme.palette.error.main, 0.15),
+      '&:hover': {
+        backgroundColor: alpha(theme.palette.error.main, 0.25)
+      }
     }
-  `,
-  edit: css`
-    background-color: ${theme.palette.info.light}80;
-    color: ${theme.palette.info.dark};
-    &:hover {
-      background-color: ${theme.palette.info.main};
-      color: ${theme.palette.info.contrastText};
-    }
-  `
-})
+  }
+  return styles[variant]
+}
 
 export const StyledIconButton = styled(MuiIconButton, {
-  shouldForwardProp: (prop) => prop !== 'customVariant'
-})<CustomProps>(({ theme, customVariant }) => {
-  const variantStyles = getVariantStyles(theme)
+  shouldForwardProp: (prop) => prop !== 'variant'
+})<IconButtonProps>(({ theme, variant }) => ({
+  width: '2.5rem',
+  height: '2.5rem',
+  boxShadow: 'none',
 
-  return [
-    {
-      borderRadius: '50%',
-      width: '4rem',
-      height: '4rem',
-      transition: 'all 0.2s ease-in-out'
-    },
+  ...variantStyles(theme, variant),
 
-    variantStyles[customVariant]
-  ]
-})
+  '&:disabled': {
+    backgroundColor: theme.palette.grey[200],
+    color: theme.palette.text.disabled,
+    cursor: 'not-allowed',
+    pointerEvents: 'all'
+  }
+}))

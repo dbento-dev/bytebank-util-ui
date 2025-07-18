@@ -1,23 +1,19 @@
 import React from 'react'
+import { StyledIconButton } from './styles'
+import { IconButtonProps } from './types'
 
 import DeleteIcon from '@mui/icons-material/Delete'
 import EditIcon from '@mui/icons-material/Edit'
 
-import { StyledIconButton } from './styles'
-import { IconButtonProps } from './types'
-
 const iconMap = {
-  delete: <DeleteIcon />,
-  edit: <EditIcon />
+  edit: <EditIcon fontSize="small" />,
+  delete: <DeleteIcon fontSize="small" />
 }
 
-const IconButton: React.FC<IconButtonProps> = (props) => {
-  const { variant, ...rest } = props
-  const IconToRender = iconMap[variant]
-
+const IconButton: React.FC<IconButtonProps> = ({ variant, ...rest }) => {
   return (
-    <StyledIconButton {...rest} customVariant={variant}>
-      {IconToRender}
+    <StyledIconButton variant={variant} {...rest}>
+      {iconMap[variant]}
     </StyledIconButton>
   )
 }
