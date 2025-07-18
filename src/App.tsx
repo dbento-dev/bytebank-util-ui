@@ -6,11 +6,17 @@ import {
   IconButton,
   InputField,
   SelectField,
+  UserInfo,
   WelcomeHeader
 } from './components'
 import CurrencyInputField from './components/molecules/CurrencyInput'
 
 export const App = () => {
+  const userWithAvatar = {
+    name: 'Alice Silva',
+    avatarUrl: 'https://exemplo.com/path/to/alice.jpg'
+  }
+
   const [tipo, setTipo] = useState('')
 
   const opcoesDeTipo = [
@@ -41,6 +47,13 @@ export const App = () => {
             userName="Alice"
             welcomeMessage="Bem vinda de volta!"
             dateString="Quinta-feira, 08/09/2024"
+          />
+        </Box>
+
+        <Box sx={{ mb: '2rem' }}>
+          <UserInfo
+            name={userWithAvatar.name}
+            avatarUrl={userWithAvatar.avatarUrl}
           />
         </Box>
 
