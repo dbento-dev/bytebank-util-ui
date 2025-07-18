@@ -16,7 +16,7 @@ export const StyledSelect = styled(MuiSelect)(
     borderRadius: '0.5rem',
 
     '& .MuiSelect-select': {
-      padding: '0.6rem 1rem'
+      padding: '1rem'
     },
 
     '.MuiOutlinedInput-notchedOutline': {

@@ -12,7 +12,6 @@ export { default as SelectField } from './molecules/SelectField'
 // Organisms
 export { default as AccountCard } from './organisms/AccountCard'
 export { default as ConfirmationModal } from './organisms/ConfirmationModal'
-export { default as TransactionForm } from './organisms/TransactionForm'
 export { default as TransactionItem } from './organisms/TransactionItem'
 export { default as UserInfo } from './organisms/UserInfo'
 export { default as WelcomeHeader } from './organisms/WelcomeHeader'

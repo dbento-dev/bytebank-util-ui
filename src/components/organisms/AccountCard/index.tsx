@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 
-import VisibilityIcon from '@mui/icons-material/Visibility'
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
 import Box from '@mui/material/Box'
 import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
 
+import VisibilityIcon from '@mui/icons-material/Visibility'
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
+
 import cardBrand from '../../../assets/card-brand.png'
 import cardChip from '../../../assets/card-chip.png'
-
 import {
   BalanceText,
   BrandIconImage,
@@ -37,8 +37,8 @@ const AccountCard: React.FC<AccountCardProps> = ({
       <FlexContainer>
         <CardIconImage src={cardChip} alt="Ícone do cartão" />
         <Box textAlign="right">
-          <Typography variant="body1">{`**** ${lastFourDigits}`}</Typography>
-          <Typography variant="body2" color="grey.200">
+          <Typography variant="h6">{`**** ${lastFourDigits}`}</Typography>
+          <Typography variant="body1" color="grey.200">
             {expiryDate}
           </Typography>
         </Box>
@@ -48,7 +48,7 @@ const AccountCard: React.FC<AccountCardProps> = ({
         <BrandIconImage src={cardBrand} alt="Ícone da bandeira do cartão" />
         <Box textAlign="right">
           {balance && (
-            <BalanceText variant="h6">
+            <BalanceText variant="h5">
               <IconButton
                 onClick={toggleBalanceVisibility}
                 size="small"
@@ -66,7 +66,8 @@ const AccountCard: React.FC<AccountCardProps> = ({
               {isBalanceVisible ? balance : 'R$ ••••••'}
             </BalanceText>
           )}
-          <Typography variant="body2">{accountType}</Typography>
+
+          <Typography variant="body1">{accountType}</Typography>
         </Box>
       </FlexContainer>
     </CardContainer>

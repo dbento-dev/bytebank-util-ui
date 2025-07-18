@@ -43,7 +43,7 @@ export const StyledButton = styled(MuiButton, {
   shouldForwardProp: (prop) => prop !== 'colorVariant'
 })<ButtonProps>(({ theme, colorVariant }) => ({
   fontWeight: theme.typography.fontWeightMedium,
-  fontSize: '1rem',
+  fontSize: '1.2rem',
   textTransform: 'none',
   borderRadius: '0.4rem',
   padding: '0.85rem 1.71rem',

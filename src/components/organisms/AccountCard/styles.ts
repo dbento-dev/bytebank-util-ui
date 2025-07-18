@@ -8,8 +8,7 @@ export const CardContainer = styled(Box)(({ theme }: { theme: Theme }) => ({
   borderRadius: '1rem',
   padding: '1.5rem',
   width: '100%',
-  maxWidth: '25rem',
-  height: '15rem',
+  height: '25rem',
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'space-between',
@@ -29,7 +28,7 @@ export const BalanceText = styled(Typography)({
 })
 
 export const CardIconImage = styled('img')({
-  width: '1.5rem',
+  width: '2.5rem',
   height: 'auto'
 })
 

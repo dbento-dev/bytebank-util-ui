@@ -1,13 +1,16 @@
-import MenuItem from '@mui/material/MenuItem'
 import React from 'react'
+
+import MenuItem from '@mui/material/MenuItem'
+
+import Label from '../../atoms/Label'
+
 import {
   SelectFieldContainer,
   StyledArrowDropDownIcon,
   StyledSelect
 } from './styles'
-import { SelectFieldProps, SelectOption } from './types'
 
-import Label from '../../atoms/Label'
+import { SelectFieldProps, SelectOption } from './types'
 
 const SelectField: React.FC<SelectFieldProps> = ({
   id,

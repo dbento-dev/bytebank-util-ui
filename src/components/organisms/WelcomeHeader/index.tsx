@@ -23,7 +23,7 @@ const WelcomeHeader: React.FC<WelcomeHeaderProps> = ({
       </Box>
 
       <Box sx={{ alignSelf: 'flex-end' }}>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body1" color="text.primary">
           {dateString}
         </Typography>
       </Box>

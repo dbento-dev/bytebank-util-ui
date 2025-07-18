@@ -139,7 +139,7 @@ export const App = () => {
 
           <Stack spacing={2}>
             <SelectField
-              id="tipo-transacao"
+              id="transaction-type"
               label="Tipo de transação"
               placeholder="Selecione o tipo de transação"
               options={opcoesDeTipo}

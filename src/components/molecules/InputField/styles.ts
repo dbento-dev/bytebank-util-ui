@@ -15,7 +15,7 @@ export const StyledOutlinedInput = styled(MuiOutlinedInput)(
     borderRadius: '0.5rem',
 
     '& .MuiInputBase-input': {
-      padding: '0.8rem 1rem'
+      padding: '1rem'
     },
 
     '.MuiOutlinedInput-notchedOutline': {
