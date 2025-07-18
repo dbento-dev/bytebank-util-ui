@@ -1,6 +1,7 @@
 import { Box, Stack, Typography } from '@mui/material'
 import { useState } from 'react'
 import {
+  AccountCard,
   Button,
   IconButton,
   InputField,
@@ -126,6 +127,15 @@ export const App = () => {
               Salvar
             </Button>
           </Stack>
+        </Box>
+
+        <Box sx={{ mb: '2rem' }}>
+          <AccountCard
+            lastFourDigits="3456"
+            expiryDate="12/27"
+            accountType="Conta Corrente"
+            balance="R$ 1.234,56"
+          />
         </Box>
       </Box>
     </>

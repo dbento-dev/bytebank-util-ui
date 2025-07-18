@@ -1,33 +1,39 @@
-import { Box, IconButton } from '@mui/material'
-import { styled } from '@mui/material/styles'
+import Box from '@mui/material/Box'
+import { styled, Theme } from '@mui/material/styles'
+import Typography from '@mui/material/Typography'
 
-export const CardWrapper = styled(Box)(({ theme }) => ({
+export const CardContainer = styled(Box)(({ theme }: { theme: Theme }) => ({
   backgroundColor: theme.palette.grey[900],
   color: theme.palette.common.white,
-  borderRadius: '1.6rem',
+  borderRadius: '1rem',
   padding: '1.5rem',
-  minHeight: '25rem',
+  width: '100%',
+  maxWidth: '25rem',
+  height: '15rem',
   display: 'flex',
   flexDirection: 'column',
-  justifyContent: 'space-between'
+  justifyContent: 'space-between',
+  boxSizing: 'border-box'
 }))
 
-export const CardRow = styled(Box)({
+export const FlexContainer = styled(Box)({
   display: 'flex',
   justifyContent: 'space-between',
-  alignItems: 'flex-start'
+  alignItems: 'center'
 })
 
-export const CardChipImage = styled('img')({
-  width: '2rem'
+export const BalanceText = styled(Typography)({
+  display: 'flex',
+  alignItems: 'center',
+  gap: '0.5rem'
 })
 
-export const CardBrandImage = styled('img')({
-  width: '4rem',
+export const CardIconImage = styled('img')({
+  width: '1.5rem',
   height: 'auto'
 })
 
-export const VisibilityIconButton = styled(IconButton)(({ theme }) => ({
-  color: theme.palette.common.white,
-  marginRight: '.5rem'
-}))
+export const BrandIconImage = styled('img')({
+  width: '3rem',
+  height: 'auto'
+})
