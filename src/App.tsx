@@ -3,6 +3,7 @@ import { useState } from 'react'
 import {
   AccountCard,
   Button,
+  ConfirmationModal,
   IconButton,
   InputField,
   SelectField,
@@ -31,6 +32,31 @@ export const App = () => {
 
   const handleButton = () => {
     console.log('Teste')
+  }
+
+  const [modalOpen, setModalOpen] = useState(false)
+  const [selectedTransactionId, setSelectedTransactionId] = useState<
+    number | null
+  >(null)
+
+  // Abre o modal e armazena o ID do item a ser deletado
+  const handleDeleteClick = (id: number) => {
+    setSelectedTransactionId(id)
+    setModalOpen(true)
+  }
+
+  // Fecha o modal sem fazer nada
+  const handleCloseModal = () => {
+    setModalOpen(false)
+    setSelectedTransactionId(null)
+  }
+
+  const handleConfirmDelete = () => {
+    if (selectedTransactionId) {
+      alert(`Deletando transação com ID: ${selectedTransactionId}`)
+      // Aqui você chamaria sua API para deletar o item
+    }
+    handleCloseModal() // Fecha o modal após a confirmação
   }
 
   return (
@@ -167,7 +193,15 @@ export const App = () => {
             date="05/08"
             amount="+ R$ 400,00"
             onEdit={() => handleButton()}
-            onDelete={() => handleButton()}
+            onDelete={() => handleDeleteClick(1)}
+          />
+
+          <ConfirmationModal
+            open={modalOpen}
+            onClose={handleCloseModal}
+            onConfirm={handleConfirmDelete}
+            title="Confirmar Exclusão"
+            description="Você tem certeza que deseja deletar esta transação? Esta ação não poderá ser desfeita."
           />
         </Box>
       </Box>
