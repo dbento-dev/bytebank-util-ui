@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import { styled, Theme } from '@mui/material/styles'
+
 import CurrencyInput from 'react-currency-input-field'
 
 export const CurrencyInputFieldContainer = styled(Box)({
@@ -14,7 +15,7 @@ export const StyledCurrencyInput = styled(CurrencyInput)(
     fontSize: '1rem',
     color: theme.palette.text.primary,
     backgroundColor: theme.palette.background.default,
-    border: `0.0625rem solid ${theme.palette.grey[600]}`, // 1px
+    border: `0.0625rem solid ${theme.palette.grey[600]}`,
     borderRadius: '0.4rem',
     outline: 'none',
     padding: '1rem',
@@ -22,7 +23,7 @@ export const StyledCurrencyInput = styled(CurrencyInput)(
 
     '&:focus': {
       borderColor: theme.palette.primary.main,
-      boxShadow: `0 0 0 0.125rem ${theme.palette.primary.main}` // Efeito de anel no foco
+      boxShadow: `0 0 0 0.125rem ${theme.palette.primary.main}`
     },
 
     '&:hover': {
