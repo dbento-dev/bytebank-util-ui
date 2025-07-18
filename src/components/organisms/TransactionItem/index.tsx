@@ -1,57 +1,60 @@
 import React from 'react'
 
-import NorthEastIcon from '@mui/icons-material/NorthEast'
-import SouthWestIcon from '@mui/icons-material/SouthWest'
-import { Box, Stack, Typography } from '@mui/material'
+import Box from '@mui/material/Box'
+import Stack from '@mui/material/Stack'
+import Typography from '@mui/material/Typography'
 
 import IconButton from '../../atoms/IconButton'
-import { AmountText, IconWrapper, ItemWrapper } from './styles'
+
+import ArrowNorthEastIcon from '@mui/icons-material/NorthEast'
+import ArrowSouthWestIcon from '@mui/icons-material/SouthWest'
+
+import { AmountText, ItemContainer, TransactionIcon } from './styles'
+
 import { TransactionItemProps } from './types'
 
-const iconMap = {
-  income: <NorthEastIcon />,
-  expense: <SouthWestIcon />
-}
-
-const formatCurrency = (value: number) => {
-  return new Intl.NumberFormat('pt-BR', {
-    style: 'currency',
-    currency: 'BRL'
-  }).format(value)
-}
-
 const TransactionItem: React.FC<TransactionItemProps> = ({
-  variant,
+  transactionType,
   title,
   date,
   amount,
   onEdit,
-  onDelete
+  onDelete,
+  ...rest
 }) => {
-  return (
-    <ItemWrapper>
-      <Stack direction="row" alignItems="center" spacing={1.5}>
-        <IconWrapper variant={variant}>{iconMap[variant]}</IconWrapper>
+  const isIncome = transactionType === 'income'
 
+  return (
+    <ItemContainer {...rest}>
+      <TransactionIcon transactionType={transactionType}>
+        {isIncome ? <ArrowNorthEastIcon /> : <ArrowSouthWestIcon />}
+      </TransactionIcon>
+
+      <Box
+        sx={{
+          flexGrow: 1,
+          mx: 2,
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center'
+        }}
+      >
         <Box>
-          <Typography variant="body1" fontWeight="500">
+          <Typography variant="h6" color="text.primary" fontWeight="medium">
             {title}
           </Typography>
-          <Typography variant="body2">{date}</Typography>
+          <Typography variant="body2" color="text.disabled">
+            {date}
+          </Typography>
         </Box>
-      </Stack>
+        <AmountText transactionType={transactionType}>{amount}</AmountText>
+      </Box>
 
-      <Stack direction="row" alignItems="center" spacing={2}>
-        <AmountText customVariant={variant}>
-          {variant === 'income' ? '+' : '-'} {formatCurrency(amount)}
-        </AmountText>
-
-        <Stack direction="row" spacing={1}>
-          <IconButton variant="edit" onClick={onEdit} />
-          <IconButton variant="delete" onClick={onDelete} />
-        </Stack>
+      <Stack direction="row" spacing={0.5}>
+        <IconButton variant="edit" onClick={onEdit} />
+        <IconButton variant="delete" onClick={onDelete} />
       </Stack>
-    </ItemWrapper>
+    </ItemContainer>
   )
 }
 

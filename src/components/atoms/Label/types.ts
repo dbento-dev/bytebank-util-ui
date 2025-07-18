@@ -1,3 +1,3 @@
-import { LabelHTMLAttributes } from 'react'
+import { InputLabelProps } from '@mui/material/InputLabel'
 
-export type InputLabelProps = LabelHTMLAttributes<HTMLLabelElement>
+export type LabelProps = InputLabelProps

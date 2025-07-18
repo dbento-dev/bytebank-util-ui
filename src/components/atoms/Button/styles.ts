@@ -1,51 +1,62 @@
 import MuiButton from '@mui/material/Button'
-import { css, styled, Theme } from '@mui/material/styles'
 
-interface CustomProps {
-  customVariant: 'info' | 'error' | 'neutral'
+import { styled, Theme } from '@mui/material/styles'
+
+import { ButtonProps } from './types'
+
+const variantStyles = (
+  theme: Theme,
+  colorVariant: ButtonProps['colorVariant']
+) => {
+  const styles = {
+    info: {
+      backgroundColor: theme.palette.info.main,
+      color: theme.palette.info.contrastText,
+      border: `0.125rem solid ${theme.palette.info.dark}`,
+      '&:hover': {
+        backgroundColor: theme.palette.info.dark
+      }
+    },
+    error: {
+      backgroundColor: theme.palette.error.main,
+      color: theme.palette.error.contrastText,
+      border: `0.125rem solid ${theme.palette.error.dark}`,
+      '&:hover': {
+        backgroundColor: theme.palette.error.dark
+      }
+    },
+    neutral: {
+      backgroundColor: theme.palette.grey[200],
+      color: theme.palette.text.secondary,
+      border: `0.125rem solid ${theme.palette.grey[400]}`,
+      '&:hover': {
+        backgroundColor: theme.palette.grey[500],
+        color: theme.palette.common.white
+      }
+    }
+  }
+
+  return styles[colorVariant || 'info']
 }
 
-const getVariantStyles = (theme: Theme) => ({
-  info: css`
-    background-color: ${theme.palette.info.main};
-    color: ${theme.palette.info.contrastText};
-    border: 0.1rem solid ${theme.palette.info.dark};
-    &:hover {
-      background-color: ${theme.palette.info.dark};
-    }
-  `,
-  error: css`
-    background-color: ${theme.palette.error.main};
-    color: ${theme.palette.error.contrastText};
-    border: 0.1rem solid ${theme.palette.error.dark};
-    &:hover {
-      background-color: ${theme.palette.error.dark};
-    }
-  `,
-  neutral: css`
-    background-color: ${theme.palette.common.white};
-    color: ${theme.palette.text.primary};
-    border: 0.1rem solid ${theme.palette.grey[100]};
-    &:hover {
-      background-color: ${theme.palette.grey[100]};
-    }
-  `
-})
-
 export const StyledButton = styled(MuiButton, {
-  shouldForwardProp: (prop) => prop !== 'customVariant'
-})<CustomProps>(({ theme, customVariant }) => {
-  const variantStyles = getVariantStyles(theme)
+  shouldForwardProp: (prop) => prop !== 'colorVariant'
+})<ButtonProps>(({ theme, colorVariant }) => ({
+  fontWeight: theme.typography.fontWeightMedium,
+  fontSize: '1.2rem',
+  textTransform: 'none',
+  borderRadius: '0.4rem',
+  padding: '0.85rem 1.71rem',
+  boxShadow: 'none',
+  lineHeight: '1.5',
 
-  return [
-    {
-      fontSize: '1.6rem',
-      borderRadius: '0.8rem',
-      padding: '1rem 2rem',
-      transition: 'all 0.2s ease-in-out',
-      textTransform: 'none'
-    },
+  ...variantStyles(theme, colorVariant),
 
-    variantStyles[customVariant]
-  ]
-})
+  '&:disabled': {
+    backgroundColor: theme.palette.grey[200],
+    color: theme.palette.text.disabled,
+    cursor: 'not-allowed',
+    pointerEvents: 'all',
+    border: 'none'
+  }
+}))

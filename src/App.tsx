@@ -1,243 +1,208 @@
+import { Box, Stack, Typography } from '@mui/material'
 import { useState } from 'react'
-
-import { Box, Stack } from '@mui/material'
-import { SelectChangeEvent } from '@mui/material/Select'
-
-import Button from './components/atoms/Button'
-import IconButton from './components/atoms/IconButton'
-import CurrencyInput from './components/molecules/CurrencyInput'
-import InputField from './components/molecules/InputField'
-import SelectField from './components/molecules/SelectField'
-import AccountCard from './components/organisms/AccountCard'
-import ConfirmationModal from './components/organisms/ConfirmationModal'
-import TransactionForm from './components/organisms/TransactionForm'
-import { TransactionFormData } from './components/organisms/TransactionForm/types'
-import TransactionItem from './components/organisms/TransactionItem'
-import UserInfo from './components/organisms/UserInfo'
-import WelcomeHeader from './components/organisms/WelcomeHeader'
-import { Logo } from './components'
+import {
+  AccountCard,
+  Button,
+  ConfirmationModal,
+  IconButton,
+  InputField,
+  SelectField,
+  TransactionItem,
+  UserInfo,
+  WelcomeHeader
+} from './components'
+import CurrencyInputField from './components/molecules/CurrencyInput'
 
 export const App = () => {
-  // ConfirmationModal
-  const [isModalOpen, setIsModalOpen] = useState(false)
-  const itemNameToDelete = 'Transporte'
+  const userWithAvatar = {
+    name: 'Alice Silva',
+    avatarUrl: 'https://exemplo.com/path/to/alice.jpg'
+  }
 
-  const handleOpenModal = () => setIsModalOpen(true)
-  const handleCloseModal = () => setIsModalOpen(false)
+  const [tipo, setTipo] = useState('')
+
+  const opcoesDeTipo = [
+    { value: 'entrada', label: 'Entrada' },
+    { value: 'saida', label: 'Saída' }
+  ]
+
+  const [descricao, setDescricao] = useState('')
+
+  const [valor, setValor] = useState<string | undefined>()
+
+  const handleButton = () => {
+    console.log('Teste')
+  }
+
+  const [modalOpen, setModalOpen] = useState(false)
+  const [selectedTransactionId, setSelectedTransactionId] = useState<
+    number | null
+  >(null)
+
+  // Abre o modal e armazena o ID do item a ser deletado
+  const handleDeleteClick = (id: number) => {
+    setSelectedTransactionId(id)
+    setModalOpen(true)
+  }
+
+  // Fecha o modal sem fazer nada
+  const handleCloseModal = () => {
+    setModalOpen(false)
+    setSelectedTransactionId(null)
+  }
 
   const handleConfirmDelete = () => {
-    alert(`Item "${itemNameToDelete}" excluído!`)
-    handleCloseModal()
-  }
-
-  // Imagem p/ avatar
-  const userImage = 'https://i.pravatar.cc/150?u=alice'
-
-  // InputField
-  const [description, setDescription] = useState('')
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setDescription(event.target.value)
-  }
-
-  // CurrencyInput
-  const [value, setValue] = useState<string | undefined>('')
-  const handleValueChange = (newValue: string | undefined) => {
-    setValue(newValue)
-  }
-
-  // SelectField
-  const transactionOptions = [
-    { label: 'Entrada', value: 'income' },
-    { label: 'Saída', value: 'expense' }
-  ]
-  const [transactionType, setTransactionType] = useState('expense')
-  const handleSelectChange = (event: SelectChangeEvent<unknown>) => {
-    setTransactionType(event.target.value as string)
-  }
-
-  // TransactionItem
-  const mockTransactions = [
-    {
-      id: 1,
-      variant: 'income',
-      title: 'Salário',
-      date: '13/07/2025',
-      amount: 500.0
-    },
-    {
-      id: 2,
-      variant: 'expense',
-      title: 'Padaria',
-      date: '12/07/2025',
-      amount: 80.0
-    },
-    {
-      id: 3,
-      variant: 'expense',
-      title: 'Conta de Luz',
-      date: '11/07/2025',
-      amount: 150.75
+    if (selectedTransactionId) {
+      alert(`Deletando transação com ID: ${selectedTransactionId}`)
+      // Aqui você chamaria sua API para deletar o item
     }
-  ]
-  const handleEdit = (id: number) => {
-    alert(`Você clicou em EDITAR o item com ID: ${id}`)
-  }
-  const handleDelete = (id: number) => {
-    alert(`Você clicou em DELETAR o item com ID: ${id}`)
-  }
-
-  // AccountCard
-  const [isBalanceVisible, setIsBalanceVisible] = useState(false)
-  const toggleVisibility = () => {
-    setIsBalanceVisible((prevState) => !prevState)
-  }
-
-  // TransactionForm
-  const handleCreateSubmit = (data: TransactionFormData) => {
-    alert(`CRIANDO: ${JSON.stringify(data)}`)
-  }
-
-  const handleEditSubmit = (data: TransactionFormData) => {
-    alert(`EDITANDO: ${JSON.stringify(data)}`)
-  }
-
-  const handleCancelEdit = () => {
-    alert('Edição cancelada!')
-  }
-
-  const transactionToEdit = {
-    type: 'expense',
-    amount: '80.00',
-    description: 'Padaria'
+    handleCloseModal() // Fecha o modal após a confirmação
   }
 
   return (
     <>
-      <Box sx={{ padding: 2 }}>
-        <Box sx={{ paddingBottom: 2 }}>
-          <Logo />
-        </Box>
-        <Box sx={{ paddingTop: 2, maxWidth: 700 }}>
-          <WelcomeHeader userName="Alice Silva" />
+      <Box
+        sx={{
+          width: '100%',
+          padding: '2rem',
+          backgroundColor: 'background.paper',
+          borderRadius: '0.5rem'
+        }}
+      >
+        <Box sx={{ mb: '2rem' }}>
+          <WelcomeHeader
+            userName="Alice"
+            welcomeMessage="Bem vinda de volta!"
+            dateString="Quinta-feira, 08/09/2024"
+          />
         </Box>
 
-        <Box sx={{ paddingTop: 2, maxWidth: 400 }}>
+        <Box sx={{ mb: '2rem' }}>
           <UserInfo
-            userName="Alice Silva"
-            accountType="Conta corrente"
-            avatarUrl={userImage}
+            name={userWithAvatar.name}
+            avatarUrl={userWithAvatar.avatarUrl}
           />
         </Box>
 
-        <Stack spacing={2} direction="row" sx={{ paddingTop: 2 }}>
-          <Button variant="info">Info</Button>
-          <Button variant="error">Error</Button>
-          <Button variant="neutral">Neutral</Button>
-          <Button variant="neutral" disabled>
-            Desabilitado
-          </Button>
-        </Stack>
+        <Box sx={{ mb: '2rem' }}>
+          <Typography variant="h5" component="h2" sx={{ mb: '1.5rem' }}>
+            Demonstração do Componente: Button
+          </Typography>
 
-        <Stack direction="row" spacing={2} sx={{ paddingTop: 2 }}>
-          <IconButton variant="delete" aria-label="Deletar item" />
-          <IconButton variant="edit" aria-label="Editar item" />
-        </Stack>
+          <Typography variant="h6" component="h3" sx={{ mb: '1rem' }}>
+            Estados Ativos
+          </Typography>
 
-        <Box sx={{ paddingTop: 2, width: 400 }}>
-          <InputField
-            label="Teste"
-            value={description}
-            onChange={handleChange}
-          />
-        </Box>
+          <Stack direction="row" spacing={2}>
+            <Button colorVariant="info" onClick={() => handleButton()}>
+              Info
+            </Button>
 
-        <Box sx={{ paddingTop: 2, width: 400 }}>
-          <CurrencyInput
-            label="Teste"
-            value={value}
-            onValueChange={handleValueChange}
-            placeholder="R$ 0,00"
-          />
-        </Box>
+            <Button colorVariant="error" onClick={() => handleButton()}>
+              Error
+            </Button>
 
-        <Box sx={{ paddingTop: 2, width: 400 }}>
-          <SelectField
-            label="Teste"
-            options={transactionOptions}
-            value={transactionType}
-            onChange={handleSelectChange}
-            fullWidth
-          />
-        </Box>
+            <Button colorVariant="neutral" onClick={() => handleButton()}>
+              Neutral
+            </Button>
 
-        <Box sx={{ paddingTop: 2, maxWidth: 700 }}>
-          <Stack spacing={1.5}>
-            {mockTransactions.map((transaction) => (
-              <TransactionItem
-                key={transaction.id}
-                variant={transaction.variant as 'income' | 'expense'}
-                title={transaction.title}
-                date={transaction.date}
-                amount={transaction.amount}
-                onEdit={() => handleEdit(transaction.id)}
-                onDelete={() => handleDelete(transaction.id)}
-              />
-            ))}
+            <Button colorVariant="info" disabled>
+              Disabled
+            </Button>
           </Stack>
         </Box>
 
-        <Box sx={{ paddingTop: 2, maxWidth: 400 }}>
+        <Box sx={{ mb: '2rem' }}>
+          <Typography variant="h5" component="h2" sx={{ mb: '1.5rem' }}>
+            Demonstração do Componente: Button
+          </Typography>
+
+          <Stack direction="row" spacing={1} alignItems="center">
+            <IconButton
+              variant="edit"
+              onClick={() => handleButton()}
+              aria-label="Editar transação"
+            />
+
+            <IconButton
+              variant="delete"
+              onClick={() => handleButton()}
+              aria-label="Deletar transação"
+            />
+          </Stack>
+        </Box>
+
+        <Box component="form" sx={{ mb: '2rem', width: '400px' }}>
+          <Typography variant="h5" component="h2" sx={{ mb: '1.5rem' }}>
+            Demonstração do Componente: InputField
+          </Typography>
+
+          <Stack spacing={2}>
+            <SelectField
+              id="transaction-type"
+              label="Tipo de transação"
+              placeholder="Selecione o tipo de transação"
+              options={opcoesDeTipo}
+              value={tipo}
+              onChange={(e) => setTipo(e.target.value as string)}
+            />
+
+            <InputField
+              id="descricao-transacao"
+              label="Descrição"
+              placeholder="Ex: Pagamento de conta"
+              value={descricao}
+              onChange={(e) => setDescricao(e.target.value)}
+            />
+
+            <CurrencyInputField
+              id="valor-transacao"
+              label="Valor"
+              placeholder="R$ 0,00"
+              value={valor}
+              onValueChange={(value) => setValor(value)}
+            />
+
+            <Button colorVariant="info" sx={{ mt: 2 }}>
+              Salvar
+            </Button>
+          </Stack>
+        </Box>
+
+        <Box sx={{ mb: '2rem' }}>
           <AccountCard
             lastFourDigits="3456"
-            expirationDate="12/27"
-            accountType="Conta corrente"
-            balance={12540.8}
-            isBalanceVisible={isBalanceVisible}
-            onToggleVisibility={toggleVisibility}
+            expiryDate="12/27"
+            accountType="Conta Corrente"
+            balance="R$ 1.234,56"
           />
         </Box>
 
-        <Box sx={{ paddingTop: 2, maxWidth: 400 }}>
-          <Button variant="error" onClick={handleOpenModal}>
-            Deletar
-          </Button>
+        <Box sx={{ mb: '2rem' }}>
+          <TransactionItem
+            transactionType="income"
+            title="Freelance"
+            date="05/08"
+            amount="+ R$ 400,00"
+            onEdit={() => handleButton()}
+            onDelete={() => handleButton()}
+          />
+          <TransactionItem
+            transactionType="expense"
+            title="Freelance"
+            date="05/08"
+            amount="+ R$ 400,00"
+            onEdit={() => handleButton()}
+            onDelete={() => handleDeleteClick(1)}
+          />
 
           <ConfirmationModal
-            open={isModalOpen}
+            open={modalOpen}
             onClose={handleCloseModal}
             onConfirm={handleConfirmDelete}
-            title="Confirmar exclusão"
-            itemName={itemNameToDelete}
+            title="Confirmar Exclusão"
+            description="Você tem certeza que deseja deletar esta transação? Esta ação não poderá ser desfeita."
           />
-        </Box>
-
-        <Box sx={{ display: 'flex', gap: 4, paddingTop: 2 }}>
-          <Box
-            sx={{
-              flex: 1,
-              border: '1px solid #ddd',
-              padding: 2,
-              borderRadius: 2
-            }}
-          >
-            <TransactionForm variant="create" onSubmit={handleCreateSubmit} />
-          </Box>
-
-          <Box
-            sx={{
-              flex: 1,
-              border: '1px solid #ddd',
-              padding: 2,
-              borderRadius: 2
-            }}
-          >
-            <TransactionForm
-              variant="edit"
-              onSubmit={handleEditSubmit}
-              onCancel={handleCancelEdit}
-              initialData={transactionToEdit}
-            />
-          </Box>
         </Box>
       </Box>
     </>

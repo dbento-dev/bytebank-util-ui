@@ -1,28 +1,27 @@
+import PersonIcon from '@mui/icons-material/Person'
 import React from 'react'
-
-import { Avatar, Box, Typography } from '@mui/material'
-
-import { UserInfoWrapper } from './styles'
+import { StyledAvatar, UserInfoContainer, UserName } from './styles'
 import { UserInfoProps } from './types'
 
-const UserInfo: React.FC<UserInfoProps> = ({
-  avatarUrl,
-  userName,
-  accountType
-}) => {
-  return (
-    <UserInfoWrapper>
-      <Avatar src={avatarUrl} alt={userName} />
+const UserInfo = React.forwardRef<HTMLDivElement, UserInfoProps>(
+  ({ name, avatarUrl, ...rest }, ref) => {
+    return (
+      <UserInfoContainer
+        direction="row"
+        alignItems="center"
+        spacing={1.5}
+        ref={ref}
+        {...rest}
+      >
+        <StyledAvatar src={avatarUrl}>
+          <PersonIcon />
+        </StyledAvatar>
+        <UserName variant="h5">{name}</UserName>
+      </UserInfoContainer>
+    )
+  }
+)
 
-      <Box>
-        <Typography variant="body1" fontWeight="bold">
-          {userName}
-        </Typography>
-
-        <Typography variant="body2">{accountType}</Typography>
-      </Box>
-    </UserInfoWrapper>
-  )
-}
+UserInfo.displayName = 'UserInfo'
 
 export default UserInfo

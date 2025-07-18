@@ -1,5 +1,6 @@
-export interface UserInfoProps {
-  avatarUrl: string
-  userName: string
-  accountType: string
+import { BoxProps } from '@mui/material/Box'
+
+export interface UserInfoProps extends BoxProps {
+  name: string
+  avatarUrl?: string
 }

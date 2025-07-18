@@ -7,7 +7,7 @@ const theme = createTheme({
       white: '#ffffff'
     },
     primary: {
-      main: '#d23a3c',
+      main: '#ed4a4c',
       contrastText: '#ffffff'
     },
     error: {
@@ -23,9 +23,9 @@ const theme = createTheme({
       contrastText: '#ffffff'
     },
     info: {
-      main: '#3b82f6',
+      main: '#2d68fd',
       light: '#60a5fa',
-      dark: '#2d68fd',
+      dark: '#1565C0',
       contrastText: '#ffffff'
     },
     success: {
@@ -46,13 +46,13 @@ const theme = createTheme({
       paper: '#f8f8f8'
     },
     text: {
-      primary: '#1f242e',
+      primary: '#001c41',
       secondary: '#3f4759',
       disabled: '#888888'
     }
   },
   typography: {
-    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+    fontFamily: '"Space Grotesk", sans-serif',
     fontSize: 14,
     fontWeightLight: 300,
     fontWeightRegular: 400,

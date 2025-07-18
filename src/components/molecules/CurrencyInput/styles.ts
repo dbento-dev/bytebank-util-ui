@@ -1,28 +1,45 @@
-import { styled } from '@mui/material/styles'
-import TextField from '@mui/material/TextField'
+import Box from '@mui/material/Box'
+import { styled, Theme } from '@mui/material/styles'
 
-export const StyledTextField = styled(TextField)(({ theme }) => ({
-  width: '100%',
+import CurrencyInput from 'react-currency-input-field'
 
-  '& .MuiOutlinedInput-root': {
-    backgroundColor: theme.palette.grey[50],
-    borderRadius: '.4rem',
+export const CurrencyInputFieldContainer = styled(Box)({
+  display: 'flex',
+  flexDirection: 'column',
+  width: '100%'
+})
 
-    '& legend': {
-      display: 'none'
+export const StyledCurrencyInput = styled(CurrencyInput)(
+  ({ theme }: { theme: Theme }) => ({
+    fontFamily: theme.typography.fontFamily,
+    fontSize: '1rem',
+    color: theme.palette.text.primary,
+    backgroundColor: theme.palette.background.default,
+    border: `0.0625rem solid ${theme.palette.grey[600]}`,
+    borderRadius: '0.4rem',
+    outline: 'none',
+    padding: '1rem',
+    transition: theme.transitions.create(['border-color', 'box-shadow']),
+
+    '&:focus': {
+      borderColor: theme.palette.primary.main,
+      boxShadow: `0 0 0 0.125rem ${theme.palette.primary.main}`
     },
 
-    '& fieldset': {
-      top: 0
+    '&:hover': {
+      borderColor: theme.palette.grey[800]
     },
 
-    '&:hover .MuiOutlinedInput-notchedOutline': {
-      borderColor: theme.palette.grey[600]
+    '&::placeholder': {
+      color: theme.palette.text.disabled,
+      opacity: 1
     },
 
-    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-      borderColor: theme.palette.info.main,
-      borderWidth: '.2rem'
+    '&:disabled': {
+      backgroundColor: theme.palette.grey[200],
+      color: theme.palette.text.disabled,
+      cursor: 'not-allowed',
+      borderColor: theme.palette.grey[200]
     }
-  }
-}))
+  })
+)

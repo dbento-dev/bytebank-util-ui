@@ -1,36 +1,58 @@
 import React from 'react'
 
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
-import { FormControl } from '@mui/material'
 import MenuItem from '@mui/material/MenuItem'
 
-import InputLabel from '../../atoms/Label'
-import { StyledSelect } from './styles'
+import Label from '../../atoms/Label'
+
+import {
+  SelectFieldContainer,
+  StyledArrowDropDownIcon,
+  StyledSelect
+} from './styles'
+
 import { SelectFieldProps, SelectOption } from './types'
 
-const SelectField: React.FC<SelectFieldProps> = (props) => {
-  const { label, options, value, fullWidth, ...rest } = props
-  const inputId = React.useId()
-  const labelId = `${inputId}-label`
+const SelectField: React.FC<SelectFieldProps> = ({
+  id,
+  label,
+  options,
+  placeholder,
+  value,
+  ...rest
+}) => {
+  const renderValue = (selectedValue: unknown) => {
+    if (!selectedValue) {
+      return <span style={{ color: '#888888' }}>{placeholder}</span>
+    }
+    const selectedOption = options.find(
+      (option) => option.value === selectedValue
+    )
+    return selectedOption ? selectedOption.label : ''
+  }
 
   return (
-    <FormControl fullWidth={fullWidth}>
-      <InputLabel id={labelId}>{label}</InputLabel>
-
+    <SelectFieldContainer>
+      <Label htmlFor={id}>{label}</Label>
       <StyledSelect
+        id={id}
+        value={value || ''}
+        renderValue={placeholder ? renderValue : undefined}
+        displayEmpty={!!placeholder}
+        IconComponent={StyledArrowDropDownIcon}
         {...rest}
-        labelId={labelId}
-        id={inputId}
-        value={value}
-        IconComponent={KeyboardArrowDownIcon}
       >
+        {placeholder && (
+          <MenuItem value="" disabled>
+            {placeholder}
+          </MenuItem>
+        )}
         {options.map((option: SelectOption) => (
           <MenuItem key={option.value} value={option.value}>
             {option.label}
           </MenuItem>
         ))}
       </StyledSelect>
-    </FormControl>
+    </SelectFieldContainer>
   )
 }
 

@@ -1,32 +1,30 @@
 import React from 'react'
-import CurrencyInputField from 'react-currency-input-field'
 
-import { Box } from '@mui/material'
+import { CurrencyInputFieldContainer, StyledCurrencyInput } from './styles'
+import { CurrencyInputFieldProps } from './types'
 
-import { StyledLabel } from '../../atoms/Label/styles'
-import { StyledTextField } from './styles'
-import { CurrencyInputProps } from './types'
+import Label from '../../atoms/Label'
 
-const CurrencyInput: React.FC<CurrencyInputProps> = (props) => {
-  const { label, ...rest } = props
-  const inputId = React.useId()
-
+const CurrencyInputField: React.FC<CurrencyInputFieldProps> = ({
+  id,
+  label,
+  ...rest
+}) => {
   return (
-    <Box sx={{ width: '100%' }}>
-      <StyledLabel htmlFor={inputId}>{label}</StyledLabel>
-
-      <CurrencyInputField
-        {...rest}
-        id={inputId}
-        name={inputId}
-        customInput={StyledTextField}
+    <CurrencyInputFieldContainer>
+      <Label htmlFor={id}>{label}</Label>
+      <StyledCurrencyInput
+        id={id}
+        intlConfig={{ locale: 'pt-BR', currency: 'BRL' }}
         prefix="R$ "
         decimalSeparator=","
         groupSeparator="."
+        allowDecimals
         decimalsLimit={2}
+        {...rest}
       />
-    </Box>
+    </CurrencyInputFieldContainer>
   )
 }
 
-export default CurrencyInput
+export default CurrencyInputField
