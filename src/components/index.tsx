@@ -8,6 +8,7 @@ export { default as Logo } from './atoms/Logo'
 export { default as CurrencyInput } from './molecules/CurrencyInput'
 export { default as InputField } from './molecules/InputField'
 export { default as SelectField } from './molecules/SelectField'
+export { TransactionSearch } from './molecules/TransactionSearch'
 
 // Organisms
 export { default as AccountCard } from './organisms/AccountCard'
