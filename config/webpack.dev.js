@@ -70,6 +70,10 @@ const devConfig = {
         'lodash.debounce': {
           singleton: true,
           requiredVersion: deps['lodash.debounce']
+        },
+        recharts: {
+          singleton: true,
+          requiredVersion: deps.recharts
         }
       }
     })
