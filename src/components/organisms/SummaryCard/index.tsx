@@ -1,57 +1,88 @@
-import { BarChart, Bar, ResponsiveContainer } from 'recharts'
+import React from 'react'
 
-const data = [
-  {
-    name: 'Page A',
-    uv: 4000,
-    pv: 2400,
-    amt: 2400
-  },
-  {
-    name: 'Page B',
-    uv: 3000,
-    pv: 1398,
-    amt: 2210
-  },
-  {
-    name: 'Page C',
-    uv: 2000,
-    pv: 9800,
-    amt: 2290
-  },
-  {
-    name: 'Page D',
-    uv: 2780,
-    pv: 3908,
-    amt: 2000
-  },
-  {
-    name: 'Page E',
-    uv: 1890,
-    pv: 4800,
-    amt: 2181
-  },
-  {
-    name: 'Page F',
-    uv: 2390,
-    pv: 3800,
-    amt: 2500
-  },
-  {
-    name: 'Page G',
-    uv: 3490,
-    pv: 4300,
-    amt: 2100
-  }
-]
+import { Stack, Typography } from '@mui/material'
 
-const SummaryCard = () => {
+import {
+  Bar,
+  BarChart,
+  Legend,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis
+} from 'recharts'
+import { CardContainer, ChartContainer, SummaryBox } from './styles'
+import { SummaryCardProps } from './types'
+
+const formatCurrency = (value: number) => {
+  return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+}
+
+const SummaryCard: React.FC<SummaryCardProps> = ({
+  totalAmount,
+  incomeAmount,
+  expenseAmount,
+  monthlySummaryData
+}) => {
+  console.log(monthlySummaryData)
   return (
-    <ResponsiveContainer width="100%" height="100%">
-      <BarChart width={150} height={40} data={data}>
-        <Bar dataKey="uv" fill="#8884d8" />
-      </BarChart>
-    </ResponsiveContainer>
+    <CardContainer>
+      <Typography
+        variant="h4"
+        component="h2"
+        sx={{ mb: 3, fontWeight: 'fontWeightBold' }}
+      >
+        Resumo
+      </Typography>
+
+      <Typography variant="h5" color="text.primary" sx={{ mb: 2 }}>
+        Total: {formatCurrency(totalAmount)}
+      </Typography>
+
+      <Stack direction="row" spacing={2} sx={{ mb: 3 }}>
+        <SummaryBox>
+          <Typography variant="body1">Entrada</Typography>
+          <Typography variant="h4">{formatCurrency(incomeAmount)}</Typography>
+        </SummaryBox>
+
+        <SummaryBox>
+          <Typography variant="body1">Saída</Typography>
+          <Typography variant="h4">{formatCurrency(expenseAmount)}</Typography>
+        </SummaryBox>
+      </Stack>
+
+      <Typography variant="h5" color="text.primary" sx={{ mb: 2 }}>
+        Estatísticas
+      </Typography>
+
+      <ChartContainer>
+        <ResponsiveContainer width="100%" height={250}>
+          <BarChart
+            data={monthlySummaryData}
+            margin={{ top: 5, right: 20, left: -10, bottom: 5 }}
+          >
+            <XAxis dataKey="month" tick={{ fill: '#fff' }} fontSize="0.8rem" />
+            <YAxis
+              tick={{ fill: '#fff' }}
+              fontSize="0.8rem"
+              tickFormatter={(value) => `R$${value / 1000}k`}
+            />
+            <Tooltip
+              cursor={{ fill: 'rgba(255, 255, 255, 0.1)' }}
+              contentStyle={{
+                backgroundColor: '#fff',
+                border: 'none',
+                borderRadius: '0.4rem'
+              }}
+              formatter={(value: number) => formatCurrency(value)}
+            />
+            <Legend />
+            <Bar dataKey="Entrada" fill="#2d68fd" />
+            <Bar dataKey="Saída" fill="#ed4a4c" />
+          </BarChart>
+        </ResponsiveContainer>
+      </ChartContainer>
+    </CardContainer>
   )
 }
 
