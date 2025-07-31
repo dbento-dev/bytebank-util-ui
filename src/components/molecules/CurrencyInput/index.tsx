@@ -21,6 +21,7 @@ const CurrencyInputField: React.FC<CurrencyInputFieldProps> = ({
         groupSeparator="."
         allowDecimals
         decimalsLimit={2}
+        allowNegativeValue={false}
         {...rest}
       />
     </CurrencyInputFieldContainer>
