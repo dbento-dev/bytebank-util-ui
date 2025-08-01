@@ -9,7 +9,8 @@
     "start:local": "webpack serve --config config/webpack.local.js",
     "lint": "eslint src --ext .ts,.tsx",
     "lint:fix": "eslint . --ext .ts,.tsx --fix",
-    "format": "prettier --write \"src/**/*.{ts,tsx,json,css,md}\""
+    "format": "prettier --write \"src/**/*.{ts,tsx,json,css,md}\"",
+    "vercel-build": "webpack --config config/webpack.prod.js"
   },
   "keywords": [],
   "author": "",

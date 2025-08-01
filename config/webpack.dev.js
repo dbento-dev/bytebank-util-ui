@@ -34,8 +34,7 @@ const devConfig = {
       name: 'utilUi',
       filename: 'remoteEntry.js',
       exposes: {
-        // './Header': './src/components/Header',
-        './components': './src/components', // Webpack irá resolver para src/components/index.ts
+        './components': './src/components',
         './ThemeProvider': './src/ThemeProvider'
       },
       shared: {
@@ -77,9 +76,6 @@ const devConfig = {
           requiredVersion: deps.recharts
         }
       }
-    }),
-    new DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('development')
     })
   ]
 }
