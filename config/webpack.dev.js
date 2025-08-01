@@ -1,5 +1,6 @@
 const { ModuleFederationPlugin } = require('webpack').container
 const { merge } = require('webpack-merge')
+const { DefinePlugin } = require('webpack')
 const commonConfig = require('./webpack.common')
 
 const deps = require('../package.json').dependencies
@@ -76,6 +77,9 @@ const devConfig = {
           requiredVersion: deps.recharts
         }
       }
+    }),
+    new DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('development')
     })
   ]
 }
