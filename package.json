@@ -4,9 +4,9 @@
   "description": "",
   "main": "main.tsx",
   "scripts": {
-    "start": "webpack serve --config config/webpack.dev.js",
+    "start": "cross-env NODE_ENV=development webpack serve --config config/webpack.dev.js",
+    "build": "cross-env NODE_ENV=production webpack --config config/webpack.prod.js",
     "start:local": "webpack serve --config config/webpack.local.js",
-    "build": "webpack --config config/webpack.prod.js",
     "lint": "eslint src --ext .ts,.tsx",
     "lint:fix": "eslint . --ext .ts,.tsx --fix",
     "format": "prettier --write \"src/**/*.{ts,tsx,json,css,md}\""
@@ -42,6 +42,7 @@
     "@typescript-eslint/parser": "^8.36.0",
     "autoprefixer": "^10.4.21",
     "babel-loader": "^10.0.0",
+    "cross-env": "^10.0.0",
     "css-loader": "^7.1.2",
     "eslint": "^9.31.0",
     "eslint-config-prettier": "^10.1.5",

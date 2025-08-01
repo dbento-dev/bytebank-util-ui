@@ -1,7 +1,7 @@
 const { ModuleFederationPlugin } = require('webpack').container
 const { merge } = require('webpack-merge')
 const { DefinePlugin } = require('webpack')
-const commonConfig = require('./webpack.common')
+const commonConfig = require('./webpack.common')()
 
 const deps = require('../package.json').dependencies
 
