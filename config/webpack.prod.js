@@ -1,8 +1,9 @@
 const { ModuleFederationPlugin } = require('webpack').container
 const { merge } = require('webpack-merge')
-const commonConfig = require('./webpack.common')()
+const commonConfig = require('./webpack.common')
 const deps = require('../package.json').dependencies
 const path = require('path')
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') })
 
 const prodConfig = {
   mode: 'production',
@@ -30,10 +31,6 @@ const prodConfig = {
           singleton: true,
           requiredVersion: deps['react-dom']
         },
-        'react-router-dom': {
-          singleton: true,
-          requiredVersion: deps['react-router-dom']
-        },
         '@emotion/react': {
           singleton: true,
           requiredVersion: deps['@emotion/react']
@@ -57,6 +54,10 @@ const prodConfig = {
         recharts: {
           singleton: true,
           requiredVersion: deps.recharts
+        },
+        'react-currency-input-field': {
+          singleton: true,
+          requiredVersion: deps['react-currency-input-field']
         }
       }
     })

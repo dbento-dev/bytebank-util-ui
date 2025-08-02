@@ -1,8 +1,6 @@
 const { ModuleFederationPlugin } = require('webpack').container
 const { merge } = require('webpack-merge')
-const { DefinePlugin } = require('webpack')
-const commonConfig = require('./webpack.common')()
-
+const commonConfig = require('./webpack.common')
 const deps = require('../package.json').dependencies
 
 const devConfig = {
@@ -10,7 +8,6 @@ const devConfig = {
   output: {
     publicPath: 'http://localhost:8310/',
     filename: '[name].js'
-    // clean: true,
   },
 
   devServer: {
@@ -22,11 +19,6 @@ const devConfig = {
     headers: {
       'Access-Control-Allow-Origin': '*'
     }
-    // static: {
-    //   directory: path.join(__dirname, "../dist"),
-    // },
-    // compress: true,
-    // open: true,
   },
 
   plugins: [
@@ -46,10 +38,6 @@ const devConfig = {
         'react-dom': {
           singleton: true,
           requiredVersion: deps['react-dom']
-        },
-        'react-router-dom': {
-          singleton: true,
-          requiredVersion: deps['react-router-dom']
         },
         '@emotion/react': {
           singleton: true,
@@ -74,6 +62,10 @@ const devConfig = {
         recharts: {
           singleton: true,
           requiredVersion: deps.recharts
+        },
+        'react-currency-input-field': {
+          singleton: true,
+          requiredVersion: deps['react-currency-input-field']
         }
       }
     })
