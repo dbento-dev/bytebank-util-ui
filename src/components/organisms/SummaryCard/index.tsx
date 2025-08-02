@@ -24,7 +24,6 @@ const SummaryCard: React.FC<SummaryCardProps> = ({
   expenseAmount,
   monthlySummaryData
 }) => {
-  console.log(monthlySummaryData)
   return (
     <CardContainer>
       <Typography

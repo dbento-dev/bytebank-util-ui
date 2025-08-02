@@ -3,7 +3,8 @@ const { merge } = require('webpack-merge')
 const commonConfig = require('./webpack.common')
 const deps = require('../package.json').dependencies
 const path = require('path')
-require('dotenv').config({ path: path.resolve(__dirname, '../.env') })
+const { DefinePlugin } = require('webpack')
+const { getEnvVars } = require('./getEnvVars')
 
 const prodConfig = {
   mode: 'production',
@@ -14,6 +15,7 @@ const prodConfig = {
     clean: true
   },
   plugins: [
+    new DefinePlugin(getEnvVars()),
     new ModuleFederationPlugin({
       name: 'utilUi',
       filename: 'remoteEntry.js',

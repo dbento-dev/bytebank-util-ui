@@ -2,6 +2,8 @@ const { ModuleFederationPlugin } = require('webpack').container
 const { merge } = require('webpack-merge')
 const commonConfig = require('./webpack.common')
 const deps = require('../package.json').dependencies
+const { DefinePlugin } = require('webpack')
+const { getEnvVars } = require('./getEnvVars')
 
 const devConfig = {
   mode: 'development',
@@ -22,6 +24,7 @@ const devConfig = {
   },
 
   plugins: [
+    new DefinePlugin(getEnvVars()),
     new ModuleFederationPlugin({
       name: 'utilUi',
       filename: 'remoteEntry.js',
